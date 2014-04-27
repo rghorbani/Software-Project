@@ -27,8 +27,28 @@ namespace SAD
         private void btnShowTemps_Click(object sender, EventArgs e)
         {
             ShowTemplates showTemplates = new ShowTemplates();
-            // showTemplates.Controls.Add(new Label { Text = "fuck you" });
             showTemplates.Show();
         }
+
+        private void btnAddReciever_Click(object sender, EventArgs e)
+        {
+            AddReciever addReciever = new AddReciever();
+            addReciever.Show();
+            
+        }
+
+        private void btnMakeGroup_Click(object sender, EventArgs e)
+        {
+            MakeGroup makeGroup = new MakeGroup();
+            makeGroup.Show();
+
+        }
+
+        private void btnShowGroup_Click(object sender, EventArgs e)
+        {
+            ShowReceiverGroups showGroups = new ShowReceiverGroups();
+            showGroups.Show();
+        }
+
     }
 }

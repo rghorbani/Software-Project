@@ -20,16 +20,16 @@ namespace SAD
         private void btnLogin_Click(object sender, EventArgs e)
         {
 
-            if ((Database.getDatabase().IsRegistered(txtUser.Text, txtPass.Text)) != null)
+            if ((Database.getDatabase().IsRegistered(txtUser.Text, txtPass.Text)))
             {
-                MessageBox.Show("Logged in!");
+                MessageBox.Show("شما وارد شدید!");
                 Home home = new Home();
                 home.Show();
                 this.Close();
-                
             }
-            else {
-                MessageBox.Show("Wrong username or password");
+            else
+            {
+                MessageBox.Show("نام کاربری یا کلمه عبور اشتباه است");
             }
         }
 

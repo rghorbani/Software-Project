@@ -14,7 +14,6 @@ namespace SAD
         public Template RelatedTemplate { get; set; }
         public Receiver SampleReceiver { get; set; }
         public EducationAssistant SampleSender { get; set; }
-        public Reminder SampleReminder { get; set; }
         public Task SampleTask { get; set; }
 
     }

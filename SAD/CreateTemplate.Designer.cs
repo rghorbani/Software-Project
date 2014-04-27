@@ -32,27 +32,32 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtText = new System.Windows.Forms.RichTextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtReceiver = new System.Windows.Forms.RichTextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.dtsenttime = new System.Windows.Forms.DateTimePicker();
             this.btnCreateTemp = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.NoToTask = new System.Windows.Forms.RadioButton();
-            this.YesToTask = new System.Windows.Forms.RadioButton();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.NoToAutomatic = new System.Windows.Forms.RadioButton();
-            this.YesToAutomatic = new System.Windows.Forms.RadioButton();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.NoToReminder = new System.Windows.Forms.RadioButton();
-            this.YesToReminder = new System.Windows.Forms.RadioButton();
-            this.label7 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.Priority = new System.Windows.Forms.ComboBox();
-            this.groupBox1.SuspendLayout();
+            this.label6 = new System.Windows.Forms.Label();
+            this.YesToAutomatic = new System.Windows.Forms.RadioButton();
+            this.NoToAutomatic = new System.Windows.Forms.RadioButton();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.NoToPeriodic = new System.Windows.Forms.RadioButton();
+            this.YesToPeriodic = new System.Windows.Forms.RadioButton();
+            this.label4 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.year = new System.Windows.Forms.RadioButton();
+            this.month1 = new System.Windows.Forms.RadioButton();
+            this.month3 = new System.Windows.Forms.RadioButton();
+            this.month6 = new System.Windows.Forms.RadioButton();
+            this.label3 = new System.Windows.Forms.Label();
+            this.GroupsDropDown = new System.Windows.Forms.ComboBox();
+            this.ReceiversDropDown = new System.Windows.Forms.ComboBox();
+            this.btnAddGroup = new System.Windows.Forms.Button();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -94,41 +99,10 @@
             this.txtText.Text = "";
             this.txtText.TextChanged += new System.EventHandler(this.txtText_TextChanged);
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(562, 204);
-            this.label3.Name = "label3";
-            this.label3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label3.Size = new System.Drawing.Size(98, 13);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "گروه دریافت کننده:";
-            // 
-            // txtReceiver
-            // 
-            this.txtReceiver.Location = new System.Drawing.Point(80, 204);
-            this.txtReceiver.Name = "txtReceiver";
-            this.txtReceiver.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtReceiver.Size = new System.Drawing.Size(410, 62);
-            this.txtReceiver.TabIndex = 2;
-            this.txtReceiver.Text = "Type each receiver in a single line.";
-            this.txtReceiver.TextChanged += new System.EventHandler(this.richTextBox2_TextChanged);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(628, 292);
-            this.label4.Name = "label4";
-            this.label4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label4.Size = new System.Drawing.Size(56, 13);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "ایجاد کار؟";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(274, 331);
+            this.label5.Location = new System.Drawing.Point(250, 490);
             this.label5.Name = "label5";
             this.label5.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label5.Size = new System.Drawing.Size(62, 13);
@@ -138,87 +112,45 @@
             // 
             // dtsenttime
             // 
-            this.dtsenttime.Location = new System.Drawing.Point(51, 331);
+            this.dtsenttime.Location = new System.Drawing.Point(27, 485);
             this.dtsenttime.Name = "dtsenttime";
             this.dtsenttime.Size = new System.Drawing.Size(200, 20);
-            this.dtsenttime.TabIndex = 7;
+            this.dtsenttime.TabIndex = 6;
+            this.dtsenttime.ValueChanged += new System.EventHandler(this.dtsenttime_ValueChanged);
             // 
             // btnCreateTemp
             // 
             this.btnCreateTemp.BackColor = System.Drawing.Color.SpringGreen;
             this.btnCreateTemp.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnCreateTemp.Location = new System.Drawing.Point(80, 434);
+            this.btnCreateTemp.Location = new System.Drawing.Point(80, 534);
             this.btnCreateTemp.Name = "btnCreateTemp";
             this.btnCreateTemp.Size = new System.Drawing.Size(102, 40);
-            this.btnCreateTemp.TabIndex = 8;
+            this.btnCreateTemp.TabIndex = 7;
             this.btnCreateTemp.Text = "ایجاد قالب جدید";
             this.btnCreateTemp.UseVisualStyleBackColor = false;
             this.btnCreateTemp.Click += new System.EventHandler(this.btnCreateTemp_Click);
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(250, 413);
+            this.label9.Name = "label9";
+            this.label9.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label9.Size = new System.Drawing.Size(52, 13);
+            this.label9.TabIndex = 21;
+            this.label9.Text = "نوع دوره:";
+            this.label9.Click += new System.EventHandler(this.label9_Click);
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(628, 331);
+            this.label6.Location = new System.Drawing.Point(604, 449);
             this.label6.Name = "label6";
             this.label6.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label6.Size = new System.Drawing.Size(79, 13);
             this.label6.TabIndex = 13;
             this.label6.Text = "ارسال خودکار؟";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.NoToTask);
-            this.groupBox1.Controls.Add(this.YesToTask);
-            this.groupBox1.Location = new System.Drawing.Point(399, 274);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.groupBox1.Size = new System.Drawing.Size(200, 37);
-            this.groupBox1.TabIndex = 3;
-            this.groupBox1.TabStop = false;
-            // 
-            // NoToTask
-            // 
-            this.NoToTask.AutoSize = true;
-            this.NoToTask.Location = new System.Drawing.Point(121, 18);
-            this.NoToTask.Name = "NoToTask";
-            this.NoToTask.Size = new System.Drawing.Size(41, 17);
-            this.NoToTask.TabIndex = 1;
-            this.NoToTask.TabStop = true;
-            this.NoToTask.Text = "خیر";
-            this.NoToTask.UseVisualStyleBackColor = true;
-            // 
-            // YesToTask
-            // 
-            this.YesToTask.AutoSize = true;
-            this.YesToTask.Location = new System.Drawing.Point(9, 16);
-            this.YesToTask.Name = "YesToTask";
-            this.YesToTask.Size = new System.Drawing.Size(37, 17);
-            this.YesToTask.TabIndex = 0;
-            this.YesToTask.TabStop = true;
-            this.YesToTask.Text = "بله";
-            this.YesToTask.UseVisualStyleBackColor = true;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.NoToAutomatic);
-            this.groupBox2.Controls.Add(this.YesToAutomatic);
-            this.groupBox2.Location = new System.Drawing.Point(399, 318);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.groupBox2.Size = new System.Drawing.Size(200, 37);
-            this.groupBox2.TabIndex = 4;
-            this.groupBox2.TabStop = false;
-            // 
-            // NoToAutomatic
-            // 
-            this.NoToAutomatic.AutoSize = true;
-            this.NoToAutomatic.Location = new System.Drawing.Point(122, 13);
-            this.NoToAutomatic.Name = "NoToAutomatic";
-            this.NoToAutomatic.Size = new System.Drawing.Size(41, 17);
-            this.NoToAutomatic.TabIndex = 1;
-            this.NoToAutomatic.TabStop = true;
-            this.NoToAutomatic.Text = "خیر";
-            this.NoToAutomatic.UseVisualStyleBackColor = true;
+            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // YesToAutomatic
             // 
@@ -230,87 +162,218 @@
             this.YesToAutomatic.TabStop = true;
             this.YesToAutomatic.Text = "بله";
             this.YesToAutomatic.UseVisualStyleBackColor = true;
+            this.YesToAutomatic.CheckedChanged += new System.EventHandler(this.YesToAutomatic_CheckedChanged);
+            // 
+            // NoToAutomatic
+            // 
+            this.NoToAutomatic.AutoSize = true;
+            this.NoToAutomatic.Location = new System.Drawing.Point(122, 13);
+            this.NoToAutomatic.Name = "NoToAutomatic";
+            this.NoToAutomatic.Size = new System.Drawing.Size(41, 17);
+            this.NoToAutomatic.TabIndex = 1;
+            this.NoToAutomatic.TabStop = true;
+            this.NoToAutomatic.Text = "خیر";
+            this.NoToAutomatic.UseVisualStyleBackColor = true;
+            this.NoToAutomatic.CheckedChanged += new System.EventHandler(this.NoToAutomatic_CheckedChanged);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.NoToAutomatic);
+            this.groupBox2.Controls.Add(this.YesToAutomatic);
+            this.groupBox2.Location = new System.Drawing.Point(375, 436);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.groupBox2.Size = new System.Drawing.Size(200, 37);
+            this.groupBox2.TabIndex = 4;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.NoToPeriodic);
+            this.groupBox1.Controls.Add(this.YesToPeriodic);
+            this.groupBox1.Location = new System.Drawing.Point(375, 392);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.groupBox1.Size = new System.Drawing.Size(200, 37);
+            this.groupBox1.TabIndex = 3;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // NoToPeriodic
+            // 
+            this.NoToPeriodic.AutoSize = true;
+            this.NoToPeriodic.Location = new System.Drawing.Point(121, 18);
+            this.NoToPeriodic.Name = "NoToPeriodic";
+            this.NoToPeriodic.Size = new System.Drawing.Size(41, 17);
+            this.NoToPeriodic.TabIndex = 1;
+            this.NoToPeriodic.TabStop = true;
+            this.NoToPeriodic.Text = "خیر";
+            this.NoToPeriodic.UseVisualStyleBackColor = true;
+            this.NoToPeriodic.CheckedChanged += new System.EventHandler(this.NoToPeriodic_CheckedChanged);
+            // 
+            // YesToPeriodic
+            // 
+            this.YesToPeriodic.AutoSize = true;
+            this.YesToPeriodic.Location = new System.Drawing.Point(9, 16);
+            this.YesToPeriodic.Name = "YesToPeriodic";
+            this.YesToPeriodic.Size = new System.Drawing.Size(37, 17);
+            this.YesToPeriodic.TabIndex = 0;
+            this.YesToPeriodic.TabStop = true;
+            this.YesToPeriodic.Text = "بله";
+            this.YesToPeriodic.UseVisualStyleBackColor = true;
+            this.YesToPeriodic.CheckedChanged += new System.EventHandler(this.YesToPeriodic_CheckedChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(604, 410);
+            this.label4.Name = "label4";
+            this.label4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label4.Size = new System.Drawing.Size(83, 13);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "ارسال دوره ای؟";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.NoToReminder);
-            this.groupBox3.Controls.Add(this.YesToReminder);
-            this.groupBox3.Location = new System.Drawing.Point(399, 362);
+            this.groupBox3.Controls.Add(this.year);
+            this.groupBox3.Controls.Add(this.month1);
+            this.groupBox3.Controls.Add(this.month3);
+            this.groupBox3.Controls.Add(this.month6);
+            this.groupBox3.Location = new System.Drawing.Point(44, 392);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.groupBox3.Size = new System.Drawing.Size(200, 37);
+            this.groupBox3.Size = new System.Drawing.Size(200, 70);
             this.groupBox3.TabIndex = 5;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
+            this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter_1);
             // 
-            // NoToReminder
+            // year
             // 
-            this.NoToReminder.AutoSize = true;
-            this.NoToReminder.Location = new System.Drawing.Point(122, 16);
-            this.NoToReminder.Name = "NoToReminder";
-            this.NoToReminder.Size = new System.Drawing.Size(41, 17);
-            this.NoToReminder.TabIndex = 1;
-            this.NoToReminder.TabStop = true;
-            this.NoToReminder.Text = "خیر";
-            this.NoToReminder.UseVisualStyleBackColor = true;
+            this.year.AutoSize = true;
+            this.year.Location = new System.Drawing.Point(41, 40);
+            this.year.Name = "year";
+            this.year.Size = new System.Drawing.Size(60, 17);
+            this.year.TabIndex = 3;
+            this.year.TabStop = true;
+            this.year.Text = "یک ساله";
+            this.year.UseVisualStyleBackColor = true;
+            this.year.CheckedChanged += new System.EventHandler(this.year_CheckedChanged);
             // 
-            // YesToReminder
+            // month1
             // 
-            this.YesToReminder.AutoSize = true;
-            this.YesToReminder.Location = new System.Drawing.Point(8, 16);
-            this.YesToReminder.Name = "YesToReminder";
-            this.YesToReminder.Size = new System.Drawing.Size(37, 17);
-            this.YesToReminder.TabIndex = 0;
-            this.YesToReminder.TabStop = true;
-            this.YesToReminder.Text = "بله";
-            this.YesToReminder.UseVisualStyleBackColor = true;
+            this.month1.AutoSize = true;
+            this.month1.Location = new System.Drawing.Point(133, 41);
+            this.month1.Name = "month1";
+            this.month1.Size = new System.Drawing.Size(60, 17);
+            this.month1.TabIndex = 2;
+            this.month1.TabStop = true;
+            this.month1.Text = "یک ماهه";
+            this.month1.UseVisualStyleBackColor = true;
+            this.month1.CheckedChanged += new System.EventHandler(this.month1_CheckedChanged);
             // 
-            // label7
+            // month3
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(625, 375);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(73, 13);
-            this.label7.TabIndex = 19;
-            this.label7.Text = "تعریف یادآور؟";
-            this.label7.Click += new System.EventHandler(this.label7_Click);
+            this.month3.AutoSize = true;
+            this.month3.Location = new System.Drawing.Point(128, 18);
+            this.month3.Name = "month3";
+            this.month3.Size = new System.Drawing.Size(63, 17);
+            this.month3.TabIndex = 1;
+            this.month3.TabStop = true;
+            this.month3.Text = "سه ماهه";
+            this.month3.UseVisualStyleBackColor = true;
+            this.month3.CheckedChanged += new System.EventHandler(this.month3_CheckedChanged);
             // 
-            // label9
+            // month6
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(274, 295);
-            this.label9.Name = "label9";
-            this.label9.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label9.Size = new System.Drawing.Size(61, 13);
-            this.label9.TabIndex = 21;
-            this.label9.Text = "اولویت نامه:";
-            this.label9.Click += new System.EventHandler(this.label9_Click);
+            this.month6.AutoSize = true;
+            this.month6.Location = new System.Drawing.Point(34, 16);
+            this.month6.Name = "month6";
+            this.month6.Size = new System.Drawing.Size(67, 17);
+            this.month6.TabIndex = 0;
+            this.month6.TabStop = true;
+            this.month6.Text = "شش ماهه";
+            this.month6.UseVisualStyleBackColor = true;
+            this.month6.CheckedChanged += new System.EventHandler(this.month6_CheckedChanged);
             // 
-            // Priority
+            // label3
             // 
-            this.Priority.FormattingEnabled = true;
-            this.Priority.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5"});
-            this.Priority.Location = new System.Drawing.Point(151, 290);
-            this.Priority.Margin = new System.Windows.Forms.Padding(2);
-            this.Priority.Name = "Priority";
-            this.Priority.Size = new System.Drawing.Size(92, 21);
-            this.Priority.TabIndex = 6;
-            this.Priority.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged_1);
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(577, 192);
+            this.label3.Name = "label3";
+            this.label3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label3.Size = new System.Drawing.Size(80, 13);
+            this.label3.TabIndex = 5;
+            this.label3.Text = ":دریافت‌کنندگان";
+            // 
+            // GroupsDropDown
+            // 
+            this.GroupsDropDown.FormattingEnabled = true;
+            this.GroupsDropDown.Location = new System.Drawing.Point(369, 189);
+            this.GroupsDropDown.Name = "GroupsDropDown";
+            this.GroupsDropDown.Size = new System.Drawing.Size(121, 21);
+            this.GroupsDropDown.TabIndex = 22;
+            this.GroupsDropDown.SelectedIndexChanged += new System.EventHandler(this.GroupsDropDown_SelectedIndexChanged);
+            // 
+            // ReceiversDropDown
+            // 
+            this.ReceiversDropDown.FormattingEnabled = true;
+            this.ReceiversDropDown.Location = new System.Drawing.Point(178, 192);
+            this.ReceiversDropDown.Name = "ReceiversDropDown";
+            this.ReceiversDropDown.Size = new System.Drawing.Size(121, 21);
+            this.ReceiversDropDown.TabIndex = 23;
+            this.ReceiversDropDown.SelectedIndexChanged += new System.EventHandler(this.ReceiversDropDown_SelectedIndexChanged);
+            // 
+            // btnAddGroup
+            // 
+            this.btnAddGroup.Location = new System.Drawing.Point(390, 226);
+            this.btnAddGroup.Name = "btnAddGroup";
+            this.btnAddGroup.Size = new System.Drawing.Size(97, 21);
+            this.btnAddGroup.TabIndex = 24;
+            this.btnAddGroup.Text = "اضافه کردن گروه";
+            this.btnAddGroup.UseVisualStyleBackColor = true;
+            this.btnAddGroup.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(369, 273);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(120, 95);
+            this.listBox1.TabIndex = 26;
+            // 
+            // listBox2
+            // 
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.Location = new System.Drawing.Point(179, 273);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(120, 95);
+            this.listBox2.TabIndex = 27;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(202, 226);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(97, 21);
+            this.button1.TabIndex = 28;
+            this.button1.Text = "اضافه کردن عضو ";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // CreateTemplate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(714, 486);
-            this.Controls.Add(this.Priority);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label7);
+            this.ClientSize = new System.Drawing.Size(714, 598);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.listBox2);
+            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.btnAddGroup);
+            this.Controls.Add(this.ReceiversDropDown);
+            this.Controls.Add(this.GroupsDropDown);
             this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label6);
@@ -318,7 +381,6 @@
             this.Controls.Add(this.dtsenttime);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.txtReceiver);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtText);
             this.Controls.Add(this.label2);
@@ -328,10 +390,10 @@
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Text = "CreateTemplate";
             this.Load += new System.EventHandler(this.CreateTemplate_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
@@ -345,24 +407,29 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.RichTextBox txtText;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.RichTextBox txtReceiver;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DateTimePicker dtsenttime;
         private System.Windows.Forms.Button btnCreateTemp;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton NoToTask;
-        private System.Windows.Forms.RadioButton YesToTask;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.RadioButton NoToAutomatic;
-        private System.Windows.Forms.RadioButton YesToAutomatic;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.RadioButton NoToReminder;
-        private System.Windows.Forms.RadioButton YesToReminder;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox Priority;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.RadioButton YesToAutomatic;
+        private System.Windows.Forms.RadioButton NoToAutomatic;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton NoToPeriodic;
+        private System.Windows.Forms.RadioButton YesToPeriodic;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.RadioButton month3;
+        private System.Windows.Forms.RadioButton month6;
+        private System.Windows.Forms.RadioButton year;
+        private System.Windows.Forms.RadioButton month1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox GroupsDropDown;
+        private System.Windows.Forms.ComboBox ReceiversDropDown;
+        private System.Windows.Forms.Button btnAddGroup;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.Button button1;
     }
 }
