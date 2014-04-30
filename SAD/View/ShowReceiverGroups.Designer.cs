@@ -44,9 +44,9 @@
             this.description,
             this.Receivers,
             this.title});
-            this.dataGridViewGroups.Location = new System.Drawing.Point(139, 1);
+            this.dataGridViewGroups.Location = new System.Drawing.Point(138, 1);
             this.dataGridViewGroups.Name = "dataGridViewGroups";
-            this.dataGridViewGroups.Size = new System.Drawing.Size(344, 249);
+            this.dataGridViewGroups.Size = new System.Drawing.Size(345, 246);
             this.dataGridViewGroups.TabIndex = 0;
             this.dataGridViewGroups.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewGroups_CellContentClick);
             // 

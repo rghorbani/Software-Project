@@ -47,7 +47,6 @@ namespace SAD
             int index = this.listBox1.IndexFromPoint(e.Location);
             if (index != System.Windows.Forms.ListBox.NoMatches)
             {
-                //MessageBox.Show(index.ToString());
                 listBox1.Items.RemoveAt(index);
                 selected_groups.RemoveAt(index);
             }
@@ -58,7 +57,6 @@ namespace SAD
             int index = this.listBox1.IndexFromPoint(e.Location);
             if (index != System.Windows.Forms.ListBox.NoMatches)
             {
-                //MessageBox.Show(index.ToString());
                 listBox1.Items.RemoveAt(index);
                 selected_receivers.RemoveAt(index);
             }
@@ -127,7 +125,7 @@ namespace SAD
             }
             else
             {
-                _template = new Template(1,title, text, receivers, periodic, senttime, isAutomatic, type);
+                _template = new Template(1,title, text, periodic, senttime, isAutomatic, type);
                 this.DialogResult = System.Windows.Forms.DialogResult.OK;
                 Database.getDatabase().AddTemplate(_template,selected_groups, selected_receivers);
                 
@@ -176,8 +174,7 @@ namespace SAD
                 month1.Enabled = true;
                 month3.Enabled = true;
                 month6.Enabled = true;
-                year.Enabled = true;
-            
+                year.Enabled = true;            
             }
         }
 
@@ -249,6 +246,10 @@ namespace SAD
         {
             if (selectedGroup != null)
             {
+                for (int i = 0; i < selected_groups.Count; i++)
+                    if (selected_groups[i].id == selectedGroup.id)
+                        return;
+
                 selected_groups.Add(selectedGroup);
                 listBox1.Items.Add(selectedGroup.title);
             }
@@ -263,9 +264,17 @@ namespace SAD
         {
             if (selectedReceiver != null)
             {
+                for (int i = 0; i < selected_receivers.Count; i++)
+                    if (selected_receivers[i].ID == selectedReceiver.ID)
+                        return;
                 selected_receivers.Add(selectedReceiver);
-                listBox2.Items.Add(selectedReceiver.LName);
+                listBox2.Items.Add(selectedReceiver.FName + " " + selectedReceiver.LName);
             }
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
 
     }

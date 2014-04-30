@@ -45,108 +45,117 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddReceiversToGroup.cs">
+    <Compile Include="View\AddReceiversToGroup.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddReceiversToGroup.Designer.cs">
+    <Compile Include="View\AddReceiversToGroup.Designer.cs">
       <DependentUpon>AddReceiversToGroup.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddReciever.cs">
+    <Compile Include="View\AddReciever.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddReciever.Designer.cs">
+    <Compile Include="View\AddReciever.Designer.cs">
       <DependentUpon>AddReciever.cs</DependentUpon>
     </Compile>
-    <Compile Include="CreateTemplate.cs">
+    <Compile Include="View\CreateTemplate.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CreateTemplate.Designer.cs">
+    <Compile Include="View\CreateTemplate.Designer.cs">
       <DependentUpon>CreateTemplate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Database.cs" />
-    <Compile Include="DBConnect.cs" />
-    <Compile Include="EdAssistantForm.cs">
+    <Compile Include="DAO\Database.cs" />
+    <Compile Include="DAO\DBConnect.cs" />
+    <Compile Include="View\EdAssistantForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EdAssistantForm.Designer.cs">
+    <Compile Include="View\EdAssistantForm.Designer.cs">
       <DependentUpon>EdAssistantForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditDateTemplate.cs">
+    <Compile Include="View\EditDateTemplate.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EditDateTemplate.Designer.cs">
+    <Compile Include="View\EditDateTemplate.Designer.cs">
       <DependentUpon>EditDateTemplate.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditTextTemplate.cs">
+    <Compile Include="View\EditReceiversOfTemplate.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EditTextTemplate.Designer.cs">
+    <Compile Include="View\EditReceiversOfTemplate.Designer.cs">
+      <DependentUpon>EditReceiversOfTemplate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditTextTemplate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\EditTextTemplate.Designer.cs">
       <DependentUpon>EditTextTemplate.cs</DependentUpon>
     </Compile>
-    <Compile Include="EducationAssistant.cs" />
-    <Compile Include="EducationManager.cs" />
-    <Compile Include="Home.cs">
+    <Compile Include="Bussiness\EducationAssistant.cs" />
+    <Compile Include="Bussiness\EducationManager.cs" />
+    <Compile Include="View\Home.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Home.Designer.cs">
+    <Compile Include="View\Home.Designer.cs">
       <DependentUpon>Home.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login.cs">
+    <Compile Include="View\Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login.Designer.cs">
+    <Compile Include="View\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="MakeGroup.cs">
+    <Compile Include="View\MakeGroup.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MakeGroup.Designer.cs">
+    <Compile Include="View\MakeGroup.Designer.cs">
       <DependentUpon>MakeGroup.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Receiver.cs" />
-    <Compile Include="ReceiverRole.cs" />
-    <Compile Include="ReceiverGroup.cs" />
-    <Compile Include="Sample.cs" />
-    <Compile Include="ShowReceiverGroups.cs">
+    <Compile Include="Bussiness\Receiver.cs" />
+    <Compile Include="Bussiness\ReceiverRole.cs" />
+    <Compile Include="Bussiness\ReceiverGroup.cs" />
+    <Compile Include="Bussiness\Sample.cs" />
+    <Compile Include="View\ShowReceiverGroups.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ShowReceiverGroups.Designer.cs">
+    <Compile Include="View\ShowReceiverGroups.Designer.cs">
       <DependentUpon>ShowReceiverGroups.cs</DependentUpon>
     </Compile>
-    <Compile Include="ShowTemplates.cs">
+    <Compile Include="View\ShowTemplates.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ShowTemplates.Designer.cs">
+    <Compile Include="View\ShowTemplates.Designer.cs">
       <DependentUpon>ShowTemplates.cs</DependentUpon>
     </Compile>
-    <Compile Include="Template.cs" />
-    <EmbeddedResource Include="AddReceiversToGroup.resx">
+    <Compile Include="Bussiness\Template.cs" />
+    <EmbeddedResource Include="View\AddReceiversToGroup.resx">
       <DependentUpon>AddReceiversToGroup.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddReciever.resx">
+    <EmbeddedResource Include="View\AddReciever.resx">
       <DependentUpon>AddReciever.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CreateTemplate.resx">
+    <EmbeddedResource Include="View\CreateTemplate.resx">
       <DependentUpon>CreateTemplate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EdAssistantForm.resx">
+    <EmbeddedResource Include="View\EdAssistantForm.resx">
       <DependentUpon>EdAssistantForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditDateTemplate.resx">
+    <EmbeddedResource Include="View\EditDateTemplate.resx">
       <DependentUpon>EditDateTemplate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditTextTemplate.resx">
+    <EmbeddedResource Include="View\EditReceiversOfTemplate.resx">
+      <DependentUpon>EditReceiversOfTemplate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\EditTextTemplate.resx">
       <DependentUpon>EditTextTemplate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Home.resx">
+    <EmbeddedResource Include="View\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Login.resx">
+    <EmbeddedResource Include="View\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MakeGroup.resx">
+    <EmbeddedResource Include="View\MakeGroup.resx">
       <DependentUpon>MakeGroup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -158,10 +167,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ShowReceiverGroups.resx">
+    <EmbeddedResource Include="View\ShowReceiverGroups.resx">
       <DependentUpon>ShowReceiverGroups.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ShowTemplates.resx">
+    <EmbeddedResource Include="View\ShowTemplates.resx">
       <DependentUpon>ShowTemplates.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\DataSources\Template.datasource" />
@@ -178,9 +187,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DAO\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

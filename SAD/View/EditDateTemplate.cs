@@ -12,15 +12,15 @@ namespace SAD
 {
     public partial class EditDateTemplate : Form
     {
-        public EditDateTemplate(int template_id, DateTime template_sent_time)
+        Template temp;
+        public EditDateTemplate(Template template)
         {
             InitializeComponent();
-            row = template_id;
-//            List<Template> templates = Database.getDatabase().getTemplates();
-            dateTime.Value = template_sent_time ;
+            temp = template;
+            dateTime.Value = template.SentTime;
+//          List<Template> templates = Database.getDatabase().getTemplates();
             
         }
-        private int row;
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -31,7 +31,13 @@ namespace SAD
             //string query = "UPDATE templates SET name='Joe', age='22' WHERE name='John Smith'";
             //List<Template> templates = Database.getDatabase().getTemplates();
             //templates[row].SentTime = dateTime.Value;
+            temp.SentTime = dateTime.Value;
             this.Close();
+        }
+
+        private void EditDateTemplate_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

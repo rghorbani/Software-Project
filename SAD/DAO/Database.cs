@@ -53,31 +53,16 @@ namespace SAD
 
         public bool IsRegistered(string userName, string password) {
 
-            /*for (int i = 0; i < edAssistants.Count; i++)
-            {
-                if (edAssistants.ElementAt(i).Username.Equals(userName) && edAssistants.ElementAt(i).Password.Equals(password))
-                {
-                    return edAssistants.ElementAt(i);
-                }
-            }
-            return null;*/
             string query;
             query = "Select * from users where username = '" + userName + "' and password = '" + password + "'";
             List<List <string> > l = con.Select(query);
             if (l.Count == 0)
                 return false;
             else{
-                //MessageBox.Show(l[0][1]);    
-                //if (l[0][1] == userName && l[0][2] == password)
                 current_user = l[0][0];    
                 return true;
                 
-            }
-            
-
-            /*if (l[1][0] == userName && l[2][0] == password) 
-                return true;*/
-            
+            }                        
         }
 
         // Template related Functions
@@ -89,19 +74,14 @@ namespace SAD
 
             List<Template> temps = new List<Template>();
             for (int i = 0; i < l.Count; i++) {
-                
-                Template newTemplate = new Template(Convert.ToInt32(l[i][0]),l[i][3], l[i][4], "sd", l[i][6] == "True", DateTime.Now, l[i][8] == "True", Convert.ToInt32(l[i][7]));
+                Template newTemplate = new Template(Convert.ToInt32(l[i][0]), l[i][3], l[i][4], l[i][6] == "True", Convert.ToDateTime(l[i][5]), l[i][8] == "True", Convert.ToInt32(l[i][7]));
                 temps.Add(newTemplate);
             }
             return temps;
         }
         public void AddTemplate(Template template,List<ReceiverGroup> groups, List<Receiver> receivers) {
             templates.Add(template);
-            //string  NowDateTime = string.Format("{0:YYYY-MM-dd}", DateTime.Now);
-            //string sentTime = string.Format("{0:YYYY-MM-dd}", template.SentTime);
-            //int periodic
             string query;
-            //DateTime theDate = DateTime.Now;
             query = "Insert into templates (user_id, create_date, title, content, base_sent_time, is_periodic, period_type, is_automatic) VALUES ('" + current_user + "', '" + DateTime.Now.ToString("yyyy-MM-dd") + "'  ,'" + template.Title + "','" + template.Text + "','" + template.SentTime.ToString("yyyy-MM-dd") + "'," + template.Periodic + "," + template.PeriodType + "," + template.IsAutomatic + ")";
             con.Insert(query);
 
@@ -123,11 +103,8 @@ namespace SAD
             {
                 for (int i = 0; i < (24 / count); i++)
                 {
-                    //DateTime tmp = template.SentTime.AddMonths(count * (i + 1));
-                    //Console.WriteLine(tmp.ToString("yyyy-MM-dd"));
                     query = "Insert into template_sent_time(template_id, sent_time) VALUES(" + template_id.ToString() + ", '" + template.SentTime.AddMonths(count * (i + 1)).ToString("yyyy-MM-dd") + "')";
                     con.Insert(query);
-
                 }
             }
             else {
@@ -137,29 +114,27 @@ namespace SAD
         }
 
         public void AddReciever(Receiver receiver) {
-            //receivers.Add(receiver);
             string query = "Insert into receivers (first_name , last_name, email, role) VALUES ('" + receiver.FName + "', '" + receiver.LName + "','" + receiver.Email + "','" + receiver.Role + "')";
             Database.con.Insert(query);
-        }
-        public List<Receiver> getReceivers(){
-            return receivers;
         }
 
         public void AddRecieverGroup(ReceiverGroup _group)
         {
             //groups.Add(_group);
-            string query = "Insert into groups (group_name , description) VALUES ('" + _group.title + "', '" + _group.description + "')";
+            string query = "Insert into groups (group_name , description, root_group_id) VALUES ('" + _group.title + "', '" + _group.description + "', " + _group.root + ")";
             Database.con.Insert(query);
-
         }
-        public List< List<string> > FillDropDownReceivers() 
+
+        public List<Receiver> getReceivers() 
         {
             string query = "Select * from receivers";
-            return Database.con.Select(query);
 
-            //Database.con.FillDropDownList(query,dropdown);
-
-        
+            List<List<string>> l = Database.con.Select(query);
+            List<Receiver> receiversOfGroup = new List<Receiver>();
+            for (int i = 0; i < l.Count; i++) {
+                receiversOfGroup.Add(new Receiver(Convert.ToInt32(l[i][0]), l[i][1], l[i][2], l[i][3], l[i][4]));
+            }
+            return receiversOfGroup;        
         }
 
         public void AddReceiverToGroup(int group_id, int receiver_id) {
@@ -174,7 +149,7 @@ namespace SAD
             List<ReceiverGroup> groupList = new List<ReceiverGroup>();
             for (int i = 0; i < l.Count; i++)
             {
-                ReceiverGroup nextGroup = new ReceiverGroup(Convert.ToInt32(l[i][0]), l[i][1], l[i][2]);
+                ReceiverGroup nextGroup = new ReceiverGroup(Convert.ToInt32(l[i][0]), l[i][1], l[i][2], Convert.ToInt32(l[i][3]));
                 groupList.Add(nextGroup);
             }
             return groupList;
@@ -195,6 +170,70 @@ namespace SAD
 
             return receiversOfGroup;
         }
+        public List<ReceiverGroup> getGroupsOfTemplate(int template_id)
+        {
+            string query = "SELECT  groups.group_id, group_name FROM groups JOIN template_group ON groups.group_id = template_group.group_id where template_group.template_id = " + template_id;
+            List<List<string>> l = Database.con.Select(query);
+            List<ReceiverGroup> groupsOfTemplate = new List<ReceiverGroup>();
+            for (int i = 0; i < l.Count; i++)
+                groupsOfTemplate.Add(new ReceiverGroup(Convert.ToInt32(l[i][0]),l[i][1],"", 0));
+            return groupsOfTemplate;
         
+        }
+        public List<Receiver> getReceiversOfTemplate(int template_id)
+        {
+            string query = "SELECT  receivers.receiver_id, first_name, last_name, email, role FROM receivers JOIN template_receiver ON receivers.receiver_id = template_receiver.receiver_id where template_receiver.template_id = " + template_id;
+            List<List<string>> l = Database.con.Select(query);
+            List<Receiver> receiversOfTemplate = new List<Receiver>();
+            for(int i=0; i<l.Count; i++)
+                receiversOfTemplate.Add(new Receiver(Convert.ToInt32(l[i][0]), l[i][1], l[i][2], l[i][3], l[i][4]));
+            return receiversOfTemplate;
+        }
+        public void removeReceiverOfGroup(int receiver_id, int group_id) {
+            string query = "DELETE FROM join_group_receiver WHERE group_id = " + group_id + " and receiver_id = " + receiver_id;
+            con.Delete(query);
+        }
+        public void AddGroupToTemplate(int group_id, int template_id)
+        {
+            string query = "Insert into template_group(template_id,group_id) VALUES(" + template_id + "," + group_id + ")";
+            con.Insert(query);
+        }
+        public void AddReceiverToTemplate( int receiver_id, int template_id)
+        {
+            string query = "Insert into template_receiver(template_id,receiver_id) VALUES(" + template_id + "," + receiver_id + ")";
+            con.Insert(query);        
+        }
+        public void removeReceiverOfTemplate(int receiver_id, int template_id) 
+        {
+            string query = "DELETE FROM template_receiver WHERE template_id = " + template_id + " and receiver_id = " + receiver_id;            
+            con.Insert(query);
+        }
+        public void removeGroupOfTemplate(int group_id, int template_id)
+        {
+            string query = "DELETE FROM template_group WHERE template_id = " + template_id + " and group_id = " + group_id;
+            con.Insert(query);
+        }
+        public void removeTemplateSentTimes(int template_id)
+        {
+            string query = "DELETE FROM template_sent_time WHERE template_id = " + template_id;
+            con.Insert(query);        
+        }
+        public void AddSentTimesToTemplate(Template template)
+        {
+            int count = (template.PeriodType == 4) ? 12 : (template.PeriodType == 3) ? 6 : (template.PeriodType == 2) ? 3 : (template.PeriodType == 1) ? 1 : 0;
+            if (count != 0)
+            {
+                for (int i = 0; i < (24 / count); i++)
+                {
+                    string query = "Insert into template_sent_time(template_id, sent_time) VALUES(" + template.id + ", '" + template.SentTime.AddMonths(count * (i + 1)).ToString("yyyy-MM-dd") + "')";
+                    con.Insert(query);
+                }
+            }
+            else
+            {
+                string query = "Insert into template_sent_time(template_id, sent_time) VALUES(" + template.id + ", '" + template.SentTime.ToString("yyyy-MM-dd") + "')";
+                con.Insert(query);
+            }        
+        }
     }
 }

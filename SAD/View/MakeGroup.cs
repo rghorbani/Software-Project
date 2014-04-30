@@ -12,6 +12,8 @@ namespace SAD
 {
     public partial class MakeGroup : Form
     {
+        List<ReceiverGroup> groups;
+
         ReceiverGroup _group;
         public MakeGroup()
         {
@@ -44,7 +46,13 @@ namespace SAD
             }
             else
             {
-                _group = new ReceiverGroup(1,title, description);
+                int root_index = 0;
+                if (root_group.SelectedIndex != -1)
+                {
+                    root_index = groups[root_group.SelectedIndex].id;
+                }
+
+                _group = new ReceiverGroup(1,title, description, root_index);
                 this.DialogResult = System.Windows.Forms.DialogResult.OK;
                 Database.getDatabase().AddRecieverGroup(_group);
                 MessageBox.Show("گروه اضافه شد!");
@@ -55,6 +63,16 @@ namespace SAD
         private void txtTitle_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void MakeGroup_Load(object sender, EventArgs e)
+        {
+            groups = Database.getDatabase().getReceiverGroups();
+
+            for (int i = 0; i < groups.Count; i++)
+            {
+                root_group.Items.Add(groups[i].title);
+            }
         }
     }
 }

@@ -31,12 +31,14 @@
             this.ReceiversDropDown = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ReceiversDropDown
             // 
             this.ReceiversDropDown.FormattingEnabled = true;
-            this.ReceiversDropDown.Location = new System.Drawing.Point(31, 91);
+            this.ReceiversDropDown.Location = new System.Drawing.Point(23, 146);
             this.ReceiversDropDown.Name = "ReceiversDropDown";
             this.ReceiversDropDown.Size = new System.Drawing.Size(121, 21);
             this.ReceiversDropDown.TabIndex = 0;
@@ -45,7 +47,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(187, 94);
+            this.label1.Location = new System.Drawing.Point(181, 35);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(80, 13);
             this.label1.TabIndex = 1;
@@ -54,7 +56,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(70, 169);
+            this.button1.Location = new System.Drawing.Point(23, 190);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(110, 35);
             this.button1.TabIndex = 2;
@@ -62,11 +64,32 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(24, 35);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(120, 95);
+            this.listBox1.TabIndex = 27;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(24, 255);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(110, 35);
+            this.button2.TabIndex = 28;
+            this.button2.Text = "اعمال تغییرات";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // AddReceiversToGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.ClientSize = new System.Drawing.Size(284, 314);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ReceiversDropDown);
@@ -83,5 +106,7 @@
         private System.Windows.Forms.ComboBox ReceiversDropDown;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Button button2;
     }
 }

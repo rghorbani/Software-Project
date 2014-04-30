@@ -70,6 +70,7 @@
             this.Controls.Add(this.dateTime);
             this.Name = "EditDateTemplate";
             this.Text = "EditDateTemplate";
+            this.Load += new System.EventHandler(this.EditDateTemplate_Load);
             this.ResumeLayout(false);
 
         }

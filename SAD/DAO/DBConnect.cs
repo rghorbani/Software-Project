@@ -15,12 +15,12 @@ namespace SAD
         private string database;
         private string uid;
         private string password;
-
         //Constructor
         public DBConnect()
         {
             Initialize();
         }
+
 
         //Initialize values
         private void Initialize()
@@ -163,7 +163,6 @@ namespace SAD
                     for (int i = 0; i < dataReader.FieldCount; i++)
                     {
                         temp.Add(dataReader.GetValue(i).ToString());
-
                     }
                     list.Add(temp);
                 }
@@ -210,7 +209,7 @@ namespace SAD
         }
 
 
-        public void FillDropDownList(string query, ComboBox DropDownName)
+        /*public void FillDropDownList(string query, ComboBox DropDownName)
         {
             MySqlDataReader dr;
             
@@ -231,7 +230,7 @@ namespace SAD
                 }
 
             
-        }
+        }*/
         //Backup
         public void Backup()
         {

@@ -12,13 +12,15 @@ namespace SAD
 {
     public partial class EditTextTemplate : Form
     {
-        public int row;
-        public EditTextTemplate(int template_id, string text)
+        public Template temp;
+        public EditTextTemplate( Template template)
         {
             InitializeComponent();
-            row = template_id;
+            
+;
             //List<Template> templates = Database.getDatabase().getTemplates();
-            richTextBox1.Text = text;
+            richTextBox1.Text = template.Text;
+            temp = template;
         }
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
@@ -32,10 +34,11 @@ namespace SAD
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string query = "UPDATE templates SET content='" + richTextBox1.Text + "' where template_id = " + row;
+            string query = "UPDATE templates SET content='" + richTextBox1.Text + "' where template_id = " + temp.id;
             Database.con.Update(query);
             //List<Template> templates = Database.getDatabase().getTemplates();
             //templates[row].Text = richTextBox1.Text;
+            temp.Text = richTextBox1.Text;
             this.Close();
         }
     }

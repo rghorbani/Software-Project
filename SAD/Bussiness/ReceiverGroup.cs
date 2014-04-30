@@ -13,11 +13,14 @@ namespace SAD
         public string description { get; set; }
         public List<Receiver> recievers { get; set; }
 
-        public ReceiverGroup(int Id, string t, string d)
+        public int root { get; set; }
+
+        public ReceiverGroup(int Id, string t, string d, int r)
         {
             this.id = Id;
             this.title = t;
             this.description = d;
+            this.root = r;
         }
     }
 }

@@ -13,11 +13,13 @@ namespace SAD
 {
     public partial class ShowTemplates : Form
     {
-        List<Template> templates;
+        private List<Template> templates;
+        private bool dateChanged;
         public ShowTemplates()
         {
             InitializeComponent();
             templates = Database.getDatabase().getTemplates();
+            dateChanged = false;
         }
 
         private void ShowTemplates_Load(object sender, EventArgs e)
@@ -43,9 +45,10 @@ namespace SAD
                 object[] tempProps = new object[8];
                 tempProps[0] = temp.Title;
                 tempProps[1] = "مشاهده";
-                foreach(string reciever in temp.TemplateReceiver)
-                    tempProps[2] += reciever + "\r";
-//                tempProps[4] = temp.HasReminder;
+                //foreach(string reciever in temp.TemplateReceiver)
+                //    tempProps[2] += reciever + "\r";
+                tempProps[2] = "مشاهده";
+//              tempProps[4] = temp.HasReminder;
                 tempProps[3] = temp.IsAutomatic;
                 if (temp.Periodic)
                 {
@@ -62,7 +65,6 @@ namespace SAD
                 else
                 {
                     tempProps[4] = false;
-                    //tempProps[5] = "غیر دوره ای";
                     
                 }
                 tempProps[6] = "مشاهده";
@@ -73,29 +75,35 @@ namespace SAD
         }
 
         private void templateGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (templateGridView.Rows[e.RowIndex].Cells[4].Value.ToString().Equals("True") && templateGridView.Rows[e.RowIndex].Cells[5].Value == null )
-            {
-                MessageBox.Show("نوع دوره را مشخص کنید");
-                return;
-            }
-            
+        {            
             if (e.ColumnIndex == templateGridView.Columns["Column2"].Index && e.RowIndex >= 0)
             {
-                EditTextTemplate edtexttemplate = new EditTextTemplate(templates[e.RowIndex].id, templates[e.RowIndex].Text);
+                EditTextTemplate edtexttemplate = new EditTextTemplate(templates[e.RowIndex]);
                 edtexttemplate.Show();                
+            }
+            else if (e.ColumnIndex == templateGridView.Columns["Column3"].Index && e.RowIndex >= 0)
+            {
+                EditReceiversOfTemplate editReceivers = new EditReceiversOfTemplate(templates[e.RowIndex].id);
+                editReceivers.Show();
             }
             else if (e.ColumnIndex == templateGridView.Columns["Column7"].Index && e.RowIndex >= 0)
             {
-                EditDateTemplate edDateTemplate = new EditDateTemplate(templates[e.RowIndex].id, templates[e.RowIndex].SentTime);
+                EditDateTemplate edDateTemplate = new EditDateTemplate(templates[e.RowIndex]);
                 edDateTemplate.Show();
+                dateChanged = true;
+            }
+            else if ((e.ColumnIndex == templateGridView.Columns["column6"].Index || e.ColumnIndex == templateGridView.Columns["column5"].Index) && e.RowIndex >= 0)
+            {
+                dateChanged = true;
             }
             else if (e.ColumnIndex == templateGridView.Columns["Column8"].Index && e.RowIndex >= 0)
             {
+                if (templateGridView.Rows[e.RowIndex].Cells[4].Value.ToString().Equals("True") && templateGridView.Rows[e.RowIndex].Cells[5].Value == null)
+                {
+                    MessageBox.Show("نوع دوره را مشخص کنید");
+                    return;
+                }
                 templates[e.RowIndex].Title = templateGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
-                string[] rcv = Regex.Split(templateGridView.Rows[e.RowIndex].Cells[2].Value.ToString(), "\r\n");
-                templates[e.RowIndex].TemplateReceiver = new List<string>(rcv);
-                //templates[e.RowIndex].Priority = templateGridView.Rows[e.RowIndex].Cells[3].Value.ToString();
                 if (templateGridView.Rows[e.RowIndex].Cells[3].Value.ToString().Equals("True"))
                     templates[e.RowIndex].IsAutomatic = true;
                 else
@@ -110,15 +118,19 @@ namespace SAD
                     else if (templateGridView.Rows[e.RowIndex].Cells[5].Value.ToString().Equals("شش ماهه"))
                         templates[e.RowIndex].PeriodType = 3;
                     else if (templateGridView.Rows[e.RowIndex].Cells[5].Value.ToString().Equals("یک ساله"))
-                        templates[e.RowIndex].PeriodType = 4;                
+                        templates[e.RowIndex].PeriodType = 4;
                 }
                 else
                 {
                     templates[e.RowIndex].Periodic = false;
                     templates[e.RowIndex].PeriodType = 0;
                 }
-                string query = "UPDATE templates SET title= '" + templates[e.RowIndex].Title + "', is_automatic= " + templates[e.RowIndex].IsAutomatic + ", is_periodic =" + templates[e.RowIndex].Periodic + ", period_type=" + templates[e.RowIndex].PeriodType + " where template_id= " + templates[e.RowIndex].id;
-                //Database.con.Update(query);
+                if (dateChanged)
+                {
+                    Database.getDatabase().removeTemplateSentTimes(templates[e.RowIndex].id);
+                    Database.getDatabase().AddSentTimesToTemplate(templates[e.RowIndex]);
+                }
+                string query = "UPDATE templates SET title= '" + templates[e.RowIndex].Title + "', is_automatic= " + templates[e.RowIndex].IsAutomatic + ", is_periodic =" + templates[e.RowIndex].Periodic + ", period_type=" + templates[e.RowIndex].PeriodType + ", base_sent_time= '" + templates[e.RowIndex].SentTime.ToString("yyyy-MM-dd") + "' where template_id = " + templates[e.RowIndex].id;
                 Database.getDatabase().Update(query);
                 MessageBox.Show("تغییرات با موفقیت اعمال شد :)");
             }
